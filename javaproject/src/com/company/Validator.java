@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 
 public class Validator {
 
-    public void checkGPA (float gpa) {
+    public void checkGPA(float gpa) {
         if (gpa > 4.0) {
             System.out.println("Your grade is A+");
         }
@@ -32,6 +32,18 @@ public class Validator {
         }
         if (gpa < 2 && gpa >= 1.67 ){
             System.out.println("Your grade is C-");
+        }
+        if (gpa < 1.67 && gpa >= 1.33 ){
+            System.out.println("Your grade is D+");
+        }
+        if (gpa < 1.33 && gpa >= 1 ){
+            System.out.println("Your grade is D");
+        }
+        if (gpa < 1 && gpa >= 0.67 ){
+            System.out.println("Your grade is E");
+        }
+        if (gpa < 0.67 && gpa >= 0 ){
+            System.out.println("Your grade is F");
         }
     }
 
