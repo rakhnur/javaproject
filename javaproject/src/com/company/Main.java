@@ -9,7 +9,7 @@ class Main {
             Connection connection = (Connection) DriverManager.getConnection("jdbc:postgresql://localhost:5432/javaproject", "postgres", "2456");
             String selectQuery = "SELECT * FROM users";
 
-
+            Validator validator = new Validator();
             Scanner scanner = new Scanner(System.in);
 
             System.out.println("Enter the ID: ");
@@ -18,23 +18,29 @@ class Main {
             String firstname = scanner.next();
             System.out.println("Enter last name: ");
             String lastname = scanner.next();
+            System.out.println("Enter the password: ");
+            String password = scanner.next();
+            validator.checkPassword(password);
+            System.out.println("Enter your age: ");
+            int age = scanner.nextInt();
+            validator.checkAge(age);
             System.out.println("Enter the date of birth in 'year-day-month' format: ");
             System.out.println("Example - 2002-01-08");
             Date birthday = Date.valueOf(scanner.next());
             System.out.println("Enter your GPA : ");
             float gpa = Float.parseFloat(scanner.next());
-            System.out.println("Enter info about you: ");
-            String about_me = scanner.next();
+            validator.checkGPA(gpa);
 
 
-            String insertQuery = "INSERT INTO users(id, firstname, lastname, birthday, gpa, about_me) values (?,?,?,?,?,?)";
+            String insertQuery = "INSERT INTO users(id, firstname, lastname, password, age, birthday, gpa) values (?,?,?,?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
             preparedStatement.setInt(1, id);
             preparedStatement.setString(2, firstname);
             preparedStatement.setString(3, lastname);
-            preparedStatement.setDate(4, birthday);
-            preparedStatement.setFloat(5, gpa);
-            preparedStatement.setString(6, about_me);
+            preparedStatement.setString(4, password);
+            preparedStatement.setInt(5, age);
+            preparedStatement.setDate(6, birthday);
+            preparedStatement.setFloat(7, gpa);
 
             /*System.out.println("Enter student's id you want to see info about: ");
             int searchId = scanner.nextInt();
