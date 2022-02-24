@@ -1,42 +1,80 @@
 package com.company;
+import java.util.Scanner;
 
 public class Calculator {
-    public static void main(String arg[])
-    {
-        int n=5;
 
-        double m[]=new double[n];
+    /*public void calculate(float gpa) {
 
-        double g[]=new double[n];
+        Scanner sc = new Scanner(System.in);
 
-        double cgpa,sum=0;
+        System.out.println("Enter number of subjects: ");
 
-        m[0]=95;
+        int n = sc.nextInt();
 
-        m[1]=85;
+        double[] marks = new double[n];
 
-        m[2]=75;
+        System.out.println("Enter marks: ");
 
-        m[3]=80;
-
-        m[4]=95;
-
-        for(int i=0;i<n;i++)
-        {
-            g[i]=(m[i]/10);
+        for (int i = 0; i < n; i++) {
+            marks[i] = sc.nextInt();
         }
 
-        for(int i=0;i<n;i++)
-        {
-            sum+=g[i];
+        double[] grade = new double[n];
+
+        double gp, sum = 0;
+
+        for (int i = 0; i < n; i++) {
+            grade[i] = (marks[i] / 10);
         }
 
-        cgpa=sum/n;
+        for (int i = 0; i < n; i++) {
+            sum += grade[i];
+        }
 
-        System.out.println("cgpa="+cgpa);
+        gp = sum / n;
 
-        System.out.println("percantage from cgpa="+cgpa*9.5);
+        System.out.println("Your GPA is: " + gp);
 
+        System.out.println("Your percentage from gpa is: " + gp * 9.5);
+
+    }*/
+
+    public void checkAnswer(String answer, float gpa) {
+        if (answer == "Y") {
+            Scanner sc = new Scanner(System.in);
+
+            System.out.println("Enter number of subjects: ");
+
+            int n = sc.nextInt();
+
+            double[] marks = new double[n];
+
+            System.out.println("Enter marks: ");
+
+            for (int i = 0; i < n; i++) {
+                marks[i] = sc.nextInt();
+            }
+
+            double[] grade = new double[n];
+
+            double gp, sum = 0;
+
+            for (int i = 0; i < n; i++) {
+                grade[i] = (marks[i] / 10);
+            }
+
+            for (int i = 0; i < n; i++) {
+                sum += grade[i];
+            }
+
+            gp = sum / n;
+
+            System.out.println("Your GPA is: " + gp);
+
+            System.out.println("Your percentage from gpa is: " + gp * 9.5);
+        }
+        else {
+            return;
+        }
+        }
     }
-}
-

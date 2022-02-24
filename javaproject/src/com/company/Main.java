@@ -3,13 +3,16 @@ package com.company;
 import java.sql.*;
 import java.text.ParseException;
 import java.util.Scanner;
+
 class Main {
     public static void main(String[] args) throws ParseException, SQLException {
+        String answer;
         try {
             Connection connection = (Connection) DriverManager.getConnection("jdbc:postgresql://localhost:5432/javaproject", "postgres", "2456");
             String selectQuery = "SELECT * FROM users";
 
             Validator validator = new Validator();
+            Calculator calculator = new Calculator();
             Scanner scanner = new Scanner(System.in);
 
             System.out.println("Enter the ID: ");
@@ -27,9 +30,13 @@ class Main {
             System.out.println("Enter the date of birth in 'year-day-month' format: ");
             System.out.println("Example - 2002-01-08");
             Date birthday = Date.valueOf(scanner.next());
-            System.out.println("Enter your GPA : ");
+            System.out.println("Enter your GPA: ");
             float gpa = Float.parseFloat(scanner.next());
             validator.checkGPA(gpa);
+            /*System.out.println("You want to calculate your GPA?");
+            System.out.println("Yes - 'Y', no - 'N'");
+            answer = scanner.next();
+            calculator.checkAnswer(answer, gpa);*/
 
 
             String insertQuery = "INSERT INTO users(id, firstname, lastname, password, age, birthday, gpa) values (?,?,?,?,?,?,?)";
@@ -42,20 +49,14 @@ class Main {
             preparedStatement.setDate(6, birthday);
             preparedStatement.setFloat(7, gpa);
 
-            /*System.out.println("Enter student's id you want to see info about: ");
-            int searchId = scanner.nextInt();
-            String getQuery = "SELECT name, , , FROM users WHERE id = 1";
-            PreparedStatement preparedStatement3 = connection.prepareStatement(getQuery);*/
-
-
-            /*System.out.println("Enter student id you want to remove: ");
-            String deleteName = scanner.next();
+            System.out.println("Enter student id you want to remove: ");
+            String deleteId = scanner.next();
             String removeQuery= "DELETE FROM users WHERE id = '" + deleteId + "'";
-            PreparedStatement preparedStatement2 = connection.prepareStatement(removeQuery);*/
+            PreparedStatement preparedStatement2 = connection.prepareStatement(removeQuery);
 
             preparedStatement.executeUpdate();
-            //preparedStatement2.executeUpdate();
-            //preparedStatement3.executeUpdate();
+            preparedStatement2.executeUpdate();
+
             connection.close();
 
         } catch (SQLException e) {
